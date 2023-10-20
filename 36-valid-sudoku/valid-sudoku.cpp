@@ -20,11 +20,7 @@ public:
                     mp2[board[j][i]] ++ ;
                 }
 
-                if(mp1[board[i][j]] > 1){   //if same num is more than once in same row
-                    return false ;
-                }
-
-                if(mp2[board[j][i]] > 1){   //if same num is more than once in same col
+                if(mp1[board[i][j]] > 1 || mp2[board[j][i]] > 1){   //if same num is more than once in same row
                     return false ;
                 }
             }
