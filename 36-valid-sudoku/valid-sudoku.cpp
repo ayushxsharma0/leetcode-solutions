@@ -1,54 +1,51 @@
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        // three conditions need to be satisfied for a valid sudoku
-        unordered_map<char,int> mp1 ;
-        unordered_map<char,int> mp2 ;
-        
-        int i,j ;
-        //check if all rows and cols are valid 
-        for(i =0; i<9; i++){
-            for(j=0;j<9;j++){
 
-                // to check whole row
-                if(board[i][j] != '.'){
-                    mp1[board[i][j]] ++ ;
-                }
-                //to check whole col
-
-                if(board[j][i] != '.'){
-                    mp2[board[j][i]] ++ ;
-                }
-
-                if(mp1[board[i][j]] > 1){   //if same num is more than once in same row
-                    return false ;
-                }
-
-                if(mp2[board[j][i]] > 1){   //if same num is more than once in same col
-                    return false ;
-                }
+    bool validity(vector<vector<char>>& b, char ch, int row, int col){
+        for(int i=0;i<9;i++){
+            if(b[row][i] == ch && i!=col){
+                return false ;
             }
-            mp1.clear() ;
-            mp2.clear() ;
+            if(b[i][col] == ch && i!=row){
+                return false ;
+            }
         }
-        mp1.clear() ;
-        // check each 3x3 smaller matrices
-        for(i = 0 ;i<9; i+=3){
-            for(j=0; j<9;j+=3){
-                for(int r =i ; r<i+3;r++){
-                    for(int c = j;c<j+3;c++){
-                        if(board[r][c] != '.'){
-                            mp1[board[r][c]] ++ ;
-                        }
-                        if(mp1[board[r][c]] > 1){
-                            return false ;
+        return true ;
+    }
+
+    bool subsq(vector<vector<char>>& b){
+        for(int row =0; row<9; row +=3){
+            for(int col=0; col<9;col+=3){
+                set<int> s ;
+                for(int i =row;i<row+3;i++){
+                    for(int j = col;j<col+3;j++){
+                        if(b[i][j] != '.'){
+                            if(s.insert(b[i][j]).second == false){
+                                return false ;
+                            }
                         }
                     }
                 }
-                mp1.clear() ;
             }
         }
+        return true ;
+    }
 
+    bool isValidSudoku(vector<vector<char>>& board){
+        char ch ;
+        for(int i =0;i<9;i++){
+            for(int j =0;j<9;j++){
+                if(board[i][j] != '.'){
+                    ch = board[i][j] ;
+                if(!validity(board,ch,i,j)){
+                    return false ;
+                }
+            }
+        }
+    }
+        if(!subsq(board)){
+            return false ;
+        }
         return true ;
     }
 };
