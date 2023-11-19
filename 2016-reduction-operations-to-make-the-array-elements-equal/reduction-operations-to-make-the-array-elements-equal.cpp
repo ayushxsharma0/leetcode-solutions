@@ -6,7 +6,10 @@ public:
         sort(nums.begin(), nums.end()) ;
         int curr = nums[0];
         for(int i =0; i<nums.size();i++){
-            if(curr != nums[i]) count +=1 ; curr = nums[i] ;
+            if(curr != nums[i]){
+                count+=1 ;
+                curr = nums[i] ;
+            }
             ans += count ;
         }
         return ans ;
