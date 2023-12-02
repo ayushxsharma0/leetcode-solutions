@@ -9,7 +9,7 @@ public:
         string s ;
         int ans =0 ;
         bool b=true ;
-        unordered_map<char,int> mapp ;
+        unordered_map<char,int> mapp ;  //map to stor freq of chars in string
         for(int i =0; i<words.size();i++){
             s = words[i] ;
             for(auto i : s){
@@ -18,6 +18,7 @@ public:
             for(auto i : s){
                 if(mapp[i] > mp[i]){
                     b = false ;
+                    break ;
                 }
             }
             if(b) ans+= s.size() ;
