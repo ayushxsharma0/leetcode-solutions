@@ -21,20 +21,16 @@ public:
         // }
         // return ans ;
         int n = nums.size() ;
-        vector<int> suff(n) ;
-        vector<int> pref(n) ;
-        suff[n-1] = 1 ;
-        pref[0] = 1 ;
-
-        for(int i =1; i<n;i++){
-            pref[i] = pref[i-1] * nums[i-1] ;
+        vector<int> output(n) ;
+        output[0] = 1 ;
+        for(int i=1;i<n;i++){
+            output[i] = output[i-1] * nums[i-1] ; //prefix array
         }
-        for(int i =n-2;i>=0;i--){
-            suff[i] = suff[i+1] * nums[i+1] ;
+        int prod = nums[n-1] ;
+        for(int i = n-2;i>=0;i--){
+            output[i] *= prod ;
+            prod *= nums[i] ;
         }
-        for(int i =0;i<n;i++){
-            nums[i] = suff[i] * pref[i] ;
-        }
-        return nums ;
+        return output ;
     }
 };
