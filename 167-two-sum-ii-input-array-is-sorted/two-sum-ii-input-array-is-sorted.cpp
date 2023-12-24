@@ -4,9 +4,9 @@ public:
         int i =0 ;
         int n = numbers.size() ;
         int j = n -1 ;
-        
+        int sum ;
         while(i<n || j>=0){
-            int sum = numbers[i] + numbers[j] ;
+            sum = numbers[i] + numbers[j] ;
             if(sum > target){
                 j-- ;
             }
