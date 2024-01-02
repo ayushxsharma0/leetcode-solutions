@@ -1,28 +1,18 @@
 class Solution {
 public:
     vector<vector<int>> findMatrix(vector<int>& nums) {
-        unordered_map<int,int> mp ;
+        vector<int> freq(nums.size() + 1);
         
+        vector<vector<int>> ans;
         for(auto i : nums){
-            mp[i] ++ ;
-        }
-        int mx = INT_MIN ;
-        for(auto it : mp){
-            mx = max(mx,it.second) ;
-        }        
-        vector<vector<int>> ans(mx) ;
-        int i =0 ;
-        while(mx){
-            for(auto it : mp){
-                if(it.second>0){
-                    ans[i].push_back(it.first) ;
-                    mp[it.first] -- ;
-                }
+            if(freq[i] >= ans.size()){
+                ans.push_back({}) ;
             }
-            i++ ;
-            mx-- ;
-        }
 
-        return ans ;
+            ans[freq[i]].push_back(i) ;
+            freq[i] ++ ;
+        }
+        
+        return ans;
     }
 };
