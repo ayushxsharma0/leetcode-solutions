@@ -11,7 +11,8 @@ public:
             }
             //|num - nums[i]| <= valueDiff
             // -valueDiff <= nums - nums[i] <= valueDiff
-            //instead of the following linear search, we gotta do binary search
+
+            //instead of the following linear search, we gotta do binary search cuz linear gives TLE
 
             // for(auto it : s){
             //     if(abs(it - nums[i]) <= valueDiff){
