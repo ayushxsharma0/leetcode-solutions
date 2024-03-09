@@ -1,14 +1,12 @@
 class node{
     public:
-
-    
         bool isword;
         node* arr[26] ;
     
-    node(){
-        isword = false;
-        for (auto &a : arr) a = nullptr;
-    }  
+        node(){
+            isword = false;
+            for(auto &a : arr) a = nullptr;
+        }  
 };
 
 class Trie {
