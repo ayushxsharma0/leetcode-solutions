@@ -25,6 +25,7 @@ private:
 
         int l = dfs(p->left,res) ;
 
+        //check if diameter through current node is maximum
         res = max(res,r+l) ;
 
         return 1 + max(r,l) ;
