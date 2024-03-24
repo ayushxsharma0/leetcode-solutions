@@ -14,15 +14,38 @@ public:
         // }
         // return -1 ;
 
-        //o(nlogn) time and O(1) space
+        // ---------------------------------------------------------------------------
 
-        sort(nums.begin(),nums.end()) ;
+        // //o(nlogn) time and O(1) space but modification in the array is made
 
-        for(int i = 0;i<nums.size()-1;i++){
-            if(nums[i] == nums[i+1]){
-                return nums[i] ;
-            }
+        // sort(nums.begin(),nums.end()) ;
+
+        // for(int i = 0;i<nums.size()-1;i++){
+        //     if(nums[i] == nums[i+1]){
+        //         return nums[i] ;
+        //     }
+        // }
+        // return -1 ;
+
+        //-------------------------------------------------------------------------------
+
+        //floyd tortoise hare algorithm 
+
+        int slow = nums[0] ;
+        int fast = nums[0] ;
+
+        do{
+            slow = nums[slow] ; //move by one
+            fast = nums[nums[fast]] ; //move by two
+        }while(slow != fast) ;
+
+        slow = nums[0] ;
+
+        while(slow != fast){
+            slow = nums[slow] ;
+            fast = nums[fast] ;
         }
-        return -1 ;
+        return slow ;
+        
     }
 };
